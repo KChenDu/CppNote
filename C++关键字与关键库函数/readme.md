@@ -4,4 +4,4 @@
 - [[inline作用及使用方法]]
 - [[delete]]
 
-[[readme|返回]]
+[返回](C++关键字与关键库函数/readme)
