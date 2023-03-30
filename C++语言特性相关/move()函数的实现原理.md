@@ -54,7 +54,6 @@ fun lvalue bind:10
 */
 ```
 参数`x`为右值，到了函数内部则变量名则变为了左值，我们使用`forward`即可保留参数`x`的属性。
-
 `forward`与`move`最大的区别是，`move`在进行类型转换时，利用`remove_reference`将外层的引用全部去掉，这样可以将`t`强制转换为指定类型的右值引用，而`forward`则利用引用折叠的技巧，巧妙的保留了变量原有的属性。以下示例代码就可以观察到`move`与`forward`的原理区别：
 ```cpp
 #include <iostream>
