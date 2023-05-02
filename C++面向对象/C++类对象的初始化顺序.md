@@ -8,60 +8,60 @@
 	- 按照成员变量的声明顺序，调用成员变量的构造函数，成员变量的初始化顺序与声明顺序有关；
 	- 调用该类自身的构造函数；
 	- 析构顺序和类对象的初始化顺序相反。
-```cpp
-#include <iostream>
-using namespace std;
-
-class A
-{
-public:
-    A() { cout << "A()" << endl; }
-    ~A() { cout << "~A()" << endl; }
-};
-
-class B
-{
-public:
-    B() { cout << "B()" << endl; }
-    ~B() { cout << "~B()" << endl; }
-};
-
-class Test : public A, public B // 派生列表
-{
-public:
-    Test() { cout << "Test()" << endl; }
-    ~Test() { cout << "~Test()" << endl; }
-
-private:
-    B ex1;
-    A ex2;
-};
-
-int main()
-{
-    Test ex;
-    return 0;
-}
-/*
-运行结果：
-A()
-B()
-B()
-A()
-Test()
-~Test()
-~A()
-~B()
-~B()
-~A()
-*/
-```
-程序运行结果分析：
-- 首先调用基类`A`和`B`的构造函数，按照派生列表`public A`，`public B`的顺序构造；
-- 然后调用派生类`Test`的成员变量`ex1`和`ex2`的构造函数，按照派生类中成员变量声明的顺序构造；
-- 最后调用派生类的构造函数；
-- 接下来调用析构函数，和构造函数调用的顺序相反。
-3. 类的成员初始化：类中可能含有静态变量和全局变量，由于静态变量和全局变量都被放在静态存储区，他们的初始化在`main`函数执行之前已被初始化，且`static`变量必须在类外进行初始化。
+	```cpp
+	#include <iostream>
+	using namespace std;
+	
+	class A
+	{
+	public:
+	    A() { cout << "A()" << endl; }
+	    ~A() { cout << "~A()" << endl; }
+	};
+	
+	class B
+	{
+	public:
+	    B() { cout << "B()" << endl; }
+	    ~B() { cout << "~B()" << endl; }
+	};
+	
+	class Test : public A, public B // 派生列表
+	{
+	public:
+	    Test() { cout << "Test()" << endl; }
+	    ~Test() { cout << "~Test()" << endl; }
+	
+	private:
+	    B ex1;
+	    A ex2;
+	};
+	
+	int main()
+	{
+	    Test ex;
+	    return 0;
+	}
+	/*
+	运行结果：
+	A()
+	B()
+	B()
+	A()
+	Test()
+	~Test()
+	~A()
+	~B()
+	~B()
+	~A()
+	*/
+	```
+	程序运行结果分析：
+	- 首先调用基类`A`和`B`的构造函数，按照派生列表`public A`，`public B`的顺序构造；
+	- 然后调用派生类`Test`的成员变量`ex1`和`ex2`的构造函数，按照派生类中成员变量声明的顺序构造；
+	- 最后调用派生类的构造函数；
+	- 接下来调用析构函数，和构造函数调用的顺序相反。
+2. 类的成员初始化：类中可能含有静态变量和全局变量，由于静态变量和全局变量都被放在静态存储区，他们的初始化在`main`函数执行之前已被初始化，且`static`变量必须在类外进行初始化。
 	- 成员变量在使用初始化列表初始化时，与构造函数中初始化成员列表的顺序无关，只与定义成员变量的顺序有关。因为成员变量的初始化次序是根据变量在内存中次序有关，而内存中的排列顺序早在编译期就根据变量的定义次序决定了。
 	- 如果类不使用初始化列表初始化，而在类的构造函数内部进行初始化时，此时成员变量的初始化顺序与构造函数中代码逻辑有关。
 	- 类成员在定义时，是不能初始化的
