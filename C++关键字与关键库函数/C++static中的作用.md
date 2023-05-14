@@ -144,50 +144,50 @@
 	```
 6. `static`对象：
 	静态对象的生存周期为整个程序的生命周期，而非静态对象的生命周期只存在于某个循环中，我们可以通过以下程序做对比：
-```cpp
-#include<iostream>
-using namespace std;
-
-class GfG1
-{
-	int i;
-	public:
-		GfG1()
-		{
-			i = 0;
-			cout << "GFG1 Inside Constructor\n";
-		}
-		~GfG1()
-		{
-			cout << "GFG1 Inside Destructor\n";
-		}
-};
-
-class GfG2
-{
-	int i;
-	public:
-		GfG2()
-		{
-			i = 0;
-			cout << "GfG2 Inside Constructor\n";
-		}
-		~GfG2()
-		{
-			cout << "GfG2 Inside Destructor\n";
-		}
-};
-
-int main()
-{
-	int x = 0;
-	if (x==0)
+	```cpp
+	#include<iostream>
+	using namespace std;
+	
+	class GfG1
 	{
-		GfG1 obj1;
-        static GfG2 obj2;
+		int i;
+		public:
+			GfG1()
+			{
+				i = 0;
+				cout << "GFG1 Inside Constructor\n";
+			}
+			~GfG1()
+			{
+				cout << "GFG1 Inside Destructor\n";
+			}
+	};
+	
+	class GfG2
+	{
+		int i;
+		public:
+			GfG2()
+			{
+				i = 0;
+				cout << "GfG2 Inside Constructor\n";
+			}
+			~GfG2()
+			{
+				cout << "GfG2 Inside Destructor\n";
+			}
+	};
+	
+	int main()
+	{
+		int x = 0;
+		if (x==0)
+		{
+			GfG1 obj1;
+	        static GfG2 obj2;
+		}
+		cout << "End of main\n";
 	}
-	cout << "End of main\n";
-}
-```
+	```
 
 [返回](C++关键字与关键库函数/readme)

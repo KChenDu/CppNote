@@ -1,17 +1,17 @@
 1. `const`变量：定义成`const`常量，相较于宏常量，可进行类型检查，节省内存空间，提高了效率。被定义为`const`的变量是不可修改的。
-```cpp
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    const int y = 10;
-    cout << y;
-    y = 9; // error
-    return 0;
-}
-```
-2. `const`指针：
+	```cpp
+	#include <iostream>
+	using namespace std;
+	
+	int main()
+	{
+	    const int y = 10;
+	    cout << y;
+	    y = 9; // error
+	    return 0;
+	}
+	```
+1. `const`指针：
 	- `const`修饰指针指向的内容，则指针指向的内容不可变，但是指针本身的内容可以改变。
 		```cpp
 		int x = 0;
